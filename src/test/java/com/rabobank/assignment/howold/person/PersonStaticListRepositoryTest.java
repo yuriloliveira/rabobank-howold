@@ -12,6 +12,7 @@ import java.util.UUID;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import static com.rabobank.assignment.howold.testutils.TestUtils.getDefaultPersonList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
@@ -98,15 +99,5 @@ public class PersonStaticListRepositoryTest {
         var unexistingId = UUID.randomUUID().toString();
         var foundPerson = personStaticListRepository.findPerson(unexistingId);
         assertThat(foundPerson).isNotPresent();
-    }
-
-    @SneakyThrows
-    private List<Person> getDefaultPersonList() {
-        var csvContent = FileUtils.getResourcesFileContent(
-            "static/database.csv",
-                PersonStaticListRepositoryTest.class.getClassLoader()
-        );
-
-        return new CSVFactory().fromCSVStr(csvContent);
     }
 }

@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Component
 public class PersonStaticListRepository implements PersonRepository {
     private final List<Person> personList;
     private final List<Person> personListSortedByIssues;
