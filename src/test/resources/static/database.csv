@@ -1,6 +1,8 @@
-firstname,lastname,birthdate,issues
-Alberto,Oliveira,1996-07-18,9
-Roberta,Dolores,1992-08-07,1
-Joao,Silva,1980-01-01,67
-Joaquim,Severino,1966-06-14,0
-B,A,1977-04-09,9
+id,firstname,lastname,birthdate,issues
+6,Alberto,Oliveira,1996-07-18,9
+2,Roberta,Dolores,1992-08-07,1
+16,Joao,Silva,1980-01-01,67
+61,Joaquim,Severino,1966-06-14,0
+48,B,A,1977-04-09,9
+1,Brian,,1987-04-05,5
+3,Juan,1987-02-19,17,184
