@@ -1,6 +1,9 @@
 package com.rabobank.assignment.howold.person;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,6 +23,8 @@ public class DetailedPersonDTO {
     private String firstname;
     @JsonProperty("lastname")
     private String lastname;
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd ")
     @JsonProperty("birthdate")
     private LocalDate birthdate;
     @JsonProperty("issues")
