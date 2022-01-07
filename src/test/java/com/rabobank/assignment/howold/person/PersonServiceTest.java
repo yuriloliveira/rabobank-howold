@@ -1,5 +1,6 @@
 package com.rabobank.assignment.howold.person;
 
+import com.rabobank.assignment.howold.error.InvalidRequestException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -108,7 +109,7 @@ public class PersonServiceTest {
 
     @Test
     void findPerson_withIdNull_shouldReturnThrowIllegalArgumentException() {
-        var thrown = assertThrows(IllegalArgumentException.class, () -> {
+        var thrown = assertThrows(InvalidRequestException.class, () -> {
             personService.findPerson(null);
         });
         assertThat(thrown).hasMessage(PersonService.ID_NOT_NULL_MESSAGE);

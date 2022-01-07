@@ -26,8 +26,12 @@ public class DetailedPersonDTO {
     private Integer issues;
 
     @JsonProperty("age")
-    public long getAge() {
+    public Long getAge() {
+        if (birthdate == null) {
+            return null;
+        }
         var now = LocalDate.now();
-        return ChronoUnit.YEARS.between(now, birthdate);
+        var yearsBetween = ChronoUnit.YEARS.between(birthdate, now);
+        return yearsBetween >= 0 ? yearsBetween : 0;
     }
 }

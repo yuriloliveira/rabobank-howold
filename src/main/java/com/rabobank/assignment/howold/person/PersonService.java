@@ -1,14 +1,16 @@
 package com.rabobank.assignment.howold.person;
 
-import org.apache.coyote.Response;
+import com.rabobank.assignment.howold.error.InvalidRequestException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Component
+@Service
+@Slf4j
 public class PersonService {
     @Autowired
     private PersonRepository personRepository;
@@ -28,7 +30,7 @@ public class PersonService {
 
     public ResponseEntity<DetailedPersonDTO> findPerson(String id) {
         if (id == null) {
-            throw new IllegalArgumentException(ID_NOT_NULL_MESSAGE);
+            throw new InvalidRequestException(ID_NOT_NULL_MESSAGE);
         }
 
         Optional<DetailedPersonDTO> foundPerson =

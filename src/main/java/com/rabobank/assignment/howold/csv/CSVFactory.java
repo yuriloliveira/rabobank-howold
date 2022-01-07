@@ -18,7 +18,7 @@ public class CSVFactory {
              String csvContent = Files.readString(Path.of(filename));
              return this.fromCSVStr(csvContent);
          } catch (IOException ex) {
-             throw new CSVReadException("An IOException occured", ex);
+             throw new CSVReadException("An IOException occurred", ex);
          }
      }
 
@@ -32,7 +32,7 @@ public class CSVFactory {
                     .readValues(csvContent);
             return reader.readAll();
         } catch (IOException ex) {
-            throw new CSVReadException("An IOException occured", ex);
+            throw new CSVReadException("An IOException occurred", ex);
         }
     }
 }
