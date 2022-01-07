@@ -13,16 +13,16 @@ import java.util.List;
 
 @Component
 public class CSVFactory {
-     List<Person> fromFilename(String filename) {
+     public List<Person> fromFilename(String filename) {
          try {
              String csvContent = Files.readString(Path.of(filename));
              return this.fromCSVStr(csvContent);
          } catch (IOException ex) {
-             throw new CSVReadException("An IOException occured", ex);
+             throw new CSVReadException("An IOException occurred", ex);
          }
      }
 
-    List<Person> fromCSVStr(String csvContent) {
+    public List<Person> fromCSVStr(String csvContent) {
         try {
             CsvMapper csvMapper = new CsvMapper();
             CsvSchema headerSchema = CsvSchema.emptySchema().withHeader();
@@ -32,7 +32,7 @@ public class CSVFactory {
                     .readValues(csvContent);
             return reader.readAll();
         } catch (IOException ex) {
-            throw new CSVReadException("An IOException occured", ex);
+            throw new CSVReadException("An IOException occurred", ex);
         }
     }
 }

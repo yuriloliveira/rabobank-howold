@@ -30,11 +30,26 @@ public class CSVFactoryTest {
         var csvStr = readDefaultFile();
         List<Person> personList = csvFactory.fromCSVStr(csvStr);
         personList.forEach(person -> {
+            assertThat(person.getId()).isNotEmpty().isNotNull();
             assertThat(person.getFirstname()).isNotEmpty().isNotNull();
             assertThat(person.getBirthdate()).isNotEmpty().isNotNull();
             assertThat(person.getBirthdate()).isNotEmpty().isNotNull();
             assertThat(person.getIssues()).isNotNull().isGreaterThanOrEqualTo(0);
         });
+    }
+
+    @Test
+    void fromCSVStr_withCSVContainingPersonWithIdEmpty_shouldReturnListOfPersonWithIdEmpty() {
+        var csvStr = readFileFromTestResources("static/person-with-no-id.csv");
+        List<Person> personList = csvFactory.fromCSVStr(csvStr);
+        var person = personList.get(0);
+        assertAll(
+            () -> assertThat(person.getId()).isEmpty(),
+            () -> assertThat(person.getFirstname()).isNotEmpty().isNotNull(),
+            () -> assertThat(person.getLastname()).isNotEmpty().isNotNull(),
+            () -> assertThat(person.getBirthdate()).isNotEmpty().isNotNull(),
+            () -> assertThat(person.getIssues()).isNotNull().isGreaterThanOrEqualTo(0)
+        );
     }
 
     @Test
@@ -44,6 +59,7 @@ public class CSVFactoryTest {
         var person = personList.get(0);
         assertAll(
             () -> assertThat(person.getFirstname()).isEmpty(),
+            () -> assertThat(person.getId()).isNotEmpty().isNotNull(),
             () -> assertThat(person.getLastname()).isNotEmpty().isNotNull(),
             () -> assertThat(person.getBirthdate()).isNotEmpty().isNotNull(),
             () -> assertThat(person.getIssues()).isNotNull().isGreaterThanOrEqualTo(0)
@@ -57,6 +73,7 @@ public class CSVFactoryTest {
         var person = personList.get(0);
         assertAll(
             () -> assertThat(person.getLastname()).isEmpty(),
+            () -> assertThat(person.getId()).isNotEmpty().isNotNull(),
             () -> assertThat(person.getFirstname()).isNotEmpty().isNotNull(),
             () -> assertThat(person.getBirthdate()).isNotEmpty().isNotNull(),
             () -> assertThat(person.getIssues()).isNotNull().isGreaterThanOrEqualTo(0)
@@ -70,6 +87,7 @@ public class CSVFactoryTest {
         var person = personList.get(0);
         assertAll(
             () -> assertThat(person.getBirthdate()).isEmpty(),
+            () -> assertThat(person.getId()).isNotEmpty().isNotNull(),
             () -> assertThat(person.getFirstname()).isNotEmpty().isNotNull(),
             () -> assertThat(person.getLastname()).isNotEmpty().isNotNull(),
             () -> assertThat(person.getIssues()).isNotNull().isGreaterThanOrEqualTo(0)
